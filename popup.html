@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My Dev Notes</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="tabs">
+        <button class="tab-button active" data-tab="notes">Notes</button>
+        <button class="tab-button" data-tab="categories">Categories</button>
+        <button class="tab-button" data-tab="search">Search</button>
+    </div>
+
+    <div id="notes" class="tab-content active">
+        <h1>My Notes</h1>
+
+        <input type="text" id="noteTitleInput" placeholder="Enter note title (optional)...">
+
+        <div id="spinner" class="spinner-border mb-3" role="status">
+            <span class="visually-hidden spinner">Loading...</span>
+        </div>
+        <textarea id="noteInput" class="d-none"></textarea>
+
+        <div class="notes-buttons">
+            <select id="typeSelect">
+                <option value="code">Code</option>
+                <option value="text">Text</option>
+                <option value="link">Link</option>
+                <option value="image">Image</option>
+            </select>
+            <select id="categorySelect">
+                <option value="">Category</option>
+            </select>
+            <label for="pinNoteCheckbox" class="labelinline">Pin Note:</label>
+            <input type="checkbox" id="pinNoteCheckbox">
+            <button id="saveNote">Save Note</button>
+        </div>
+
+        <div id="editNoteForm" style="display: none;">
+            <label for="searchKeyword">Edit Title:</label>
+            <input type="text" id="editNoteTitleInput">
+            <label for="editNoteInput">Edit Note:</label>
+            <div id="spinner2" class="spinner-border mb-3" role="status">
+                <span class="visually-hidden spinner">Loading...</span>
+            </div>
+            <textarea id="editNoteInput" class="d-none"></textarea>
+
+            <select id="editTypeSelect">
+                <option value="code">Code</option>
+                <option value="text">Text</option>
+                <option value="link">Link</option>
+                <option value="image">Image</option>
+            </select>
+            <select id="editCategorySelect"></select>
+            <div class="category-buttons">
+                <button id="saveEditNote">Save Edit</button>
+                <button id="cancelEditNote">Cancel</button>
+            </div>
+        </div>
+
+        <div id="notesList"></div>
+    </div>
+
+    <div id="categories" class="tab-content">
+        <div id="categoryManager">
+            <div class="category-input-container">
+                <label for="categoryInput">Category:</label>
+                <input type="text" id="categoryInput">
+                <label for="categoryColor">Color:</label>
+                <input type="color" id="categoryColor" value="#b5afaf">
+                <img src="add.png" id="addCategory" class="add-category-icon">
+            </div>
+            <ul id="categoryList"></ul>
+            <div id="editCategoryForm" style="display: none;">
+                <label for="editCategoryInput" class="labelinline">Edit Category:</label>
+                <input type="text" id="editCategoryInput">
+                <label for="editCategoryColor" class="labelinline">Edit Color:</label>
+                <input type="color" id="editCategoryColor">
+                <div class="category-buttons">
+                    <button id="saveEditCategory">Save Edit</button>
+                    <button id="cancelEditCategory">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="search" class="tab-content">
+        <h1>Search Notes <small id="totalNotes"></small></h1>
+    
+        <div class="search-filters">
+
+                <input type="text" id="searchKeyword" placeholder="Enter keyword...">
+
+            <div>
+                <select id="searchCategory">
+                    <option value="all">All Categories</option>
+                </select>
+            </div>
+            <div>
+                <select id="searchType">
+                    <option value="all">All Types</option>
+                    <option value="text">Text</option>
+                    <option value="code">Code</option>
+                    <option value="link">Link</option>
+                    <option value="image">Image</option>
+                </select>
+            </div>
+            <div>
+                <select id="searchPinned">
+                    <option value="all">All Notes</option>
+                    <option value="pinned">Pinned Notes</option>
+                    <option value="unpinned">Unpinned Notes</option>
+                </select>
+            </div>
+        </div>
+    
+        <button id="searchButton">Search</button><span id="searchResultsCount">Total Notes: 0</span>
+        <div id="searchResults"></div>
+    </div>
+
+    <script src="uuidv4.min.js"></script>
+    <script src="hugerte/hugerte.min.js"></script>
+    <script src="purify.min.js"></script>
+    <script src="popupdb.js"></script>
+</body>
+
+</html>

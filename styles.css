@@ -1,0 +1,211 @@
+body {
+    width: 420px;
+    padding: 10px;
+    font-family: sans-serif;
+    background-color: #222;
+    color: #fff;
+}
+
+/* General Styles for Inputs, Textareas, Selects, Buttons */
+input,
+textarea,
+select,
+button {
+    padding: 8px;
+    margin: 5px 5px 5px 10px;
+    border-radius: 4px;
+    border: 1px solid #555;
+    background-color: #333;
+    color: #fff;
+    box-sizing: border-box;
+}
+
+button {
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+}
+
+button:hover {
+    background-color: #367c39;
+}
+
+/* Specific Styles */
+textarea {
+    width: 100%;
+    height: 150px;
+    resize: vertical;
+}
+
+/* Tabs */
+.tabs {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.tab-button {
+    padding: 10px 15px;
+    border: none;
+    background-color: #555;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px 4px 0 0;
+}
+
+.tab-button.active {
+    background-color: #4CAF50;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Inputs with Full Width */
+#noteTitleInput,
+#editNoteTitleInput,
+#searchKeyword, #editNoteTitleInputInline {
+    width: calc(100% - 20px);
+}
+
+/* Category Manager */
+#categoryManager .category-input-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+label {
+    display: block;
+    padding: 10px;
+}
+.labelinline{
+    display: inline !important;
+    padding: 0px !important;
+}
+#pinNoteCheckbox{
+    cursor: pointer;
+}
+h3{
+    padding: 4px;
+    margin: 4px;
+}
+
+.ongletEdit{
+    background-color: #CCC;
+    border: solid 1px #cb05cb;
+    margin: 4px 4px 40px 4px;
+    padding: 4px;
+}
+
+
+#categoryManager label {
+    margin-right: 5px;
+}
+
+#categoryManager input[type="text"] {
+    flex-grow: 1;
+    margin-right: 5px;
+}
+
+#categoryManager input[type="color"] {
+    height: 25px;
+    padding: 0;
+    margin-left: 5px;
+}
+
+/* Category List */
+#categoryList {
+    list-style: none;
+    padding: 0;
+}
+
+#categoryList li {
+    cursor: pointer;
+    color: white;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.delete-category {
+    margin-left: 10px;
+    cursor: pointer;
+    color: #d9534f;
+    height: 20px;
+}
+
+/* Search Results */
+#searchResults {
+    width: 100%; 
+    /* height: 150px; */
+    /* overflow: auto; */
+    /* max-height: 150px; */
+    /* color: white;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 5px; */
+}
+.search-filters {
+    display: flex; /* Utiliser flexbox */
+    align-items: center; /* Aligner verticalement les éléments */
+    flex-wrap: wrap; /* Passer à la ligne si l'espace est insuffisant */
+}
+
+.search-filters > div {
+    margin-bottom: 5px; /* Ajouter un espacement en bas si ils passent à la ligne */
+}
+
+/* Note Inputs */
+#noteInput,
+#editNoteInput,
+#editNoteResult {
+    width: 100%;
+    height: 200px;
+    overflow: auto;
+    max-height: 200px;
+    margin-bottom: 5px;
+    border: 1px solid #555;
+    padding: 2px;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    color: #ddd;
+}
+
+/* Note Actions */
+.note-actions {
+    padding: 10px;
+    text-align: right;
+}
+
+/* Add Category Icon */
+.add-category-icon {
+    width: 25px;
+    height: 25px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+/* Code Display */
+pre {
+    background-color: #1a1212;
+    padding: 10px;
+    overflow-x: auto;
+    color: white;
+    max-height: 200px;
+    overflow: auto;
+}
+
+small {
+    font-size: 12px;
+}
+
+.category-buttons,
+.notes-buttons {
+    text-align: right;
+}
