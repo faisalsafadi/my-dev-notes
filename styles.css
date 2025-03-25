@@ -152,13 +152,13 @@ h3{
     border-radius: 5px; */
 }
 .search-filters {
-    display: flex; /* Utiliser flexbox */
-    align-items: center; /* Aligner verticalement les éléments */
-    flex-wrap: wrap; /* Passer à la ligne si l'espace est insuffisant */
+    display: flex;  
+    align-items: center;  
+    flex-wrap: wrap;  
 }
 
 .search-filters > div {
-    margin-bottom: 5px; /* Ajouter un espacement en bas si ils passent à la ligne */
+    margin-bottom: 5px;  
 }
 
 /* Note Inputs */

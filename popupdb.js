@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let noteInputEditor = null;
     let editNoteInputEditor = null;
 
-    // Initialisation de l'éditeur Hugerte
+    // Initializing the Hugerte editor
     function initializeHuerteEditor(selector, callback) {
         hugerte.init({
             selector: selector,
@@ -12,14 +12,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Initialisation de l'éditeur principal
+    // Initializing the main editor
     initializeHuerteEditor('#noteInput', (editor) => {
         noteInputEditor = editor;
         document.getElementById('spinner').remove();
         document.getElementById('spinner2').remove();
     });
 
-    // Récupération des éléments du DOM
+    // Retrieving DOM elements
     const saveNote = document.getElementById('saveNote');
     const notesList = document.getElementById('notesList');
     const typeSelect = document.getElementById('typeSelect');
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const editNoteTitleInput = document.getElementById('editNoteTitleInput');
 
 
-    // Variables globales
+    // Global variables
     let categories = [];
     let notes = [];
     let noteToEdit = null;
@@ -59,12 +59,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- IndexedDB ---
     let db;
     const dbName = 'MyNotesDB';
-    const dbVersion = 2; // Incrémentez la version de la base de données
+    const dbVersion = 2; // Increment the database version
     const notesStoreName = 'notes';
-    const categoriesStoreName = 'categories'; // Nom du store pour les catégories
+    const categoriesStoreName = 'categories'; // Store name for categories
 
 
-    // Initialisation de la base de données IndexedDB
+    // Initializing the IndexedDB database
     function initIndexedDB() {
         const request = indexedDB.open(dbName, dbVersion);
 
@@ -75,12 +75,12 @@ document.addEventListener('DOMContentLoaded', () => {
         request.onupgradeneeded = (event) => {
             db = event.target.result;
 
-            // Création du store pour les notes
+            // Creating the store for notes
             if (!db.objectStoreNames.contains(notesStoreName)) {
                 db.createObjectStore(notesStoreName, { keyPath: 'id' });
             }
 
-            // Création du store pour les categories
+            //Creating the store for categories
             if (!db.objectStoreNames.contains(categoriesStoreName)) {
                 db.createObjectStore(categoriesStoreName, { keyPath: 'id' });
             }
@@ -92,11 +92,11 @@ document.addEventListener('DOMContentLoaded', () => {
             db = event.target.result;
             console.log('IndexedDB opened');
             loadNotesFromIndexedDB();
-            loadCategoriesFromIndexedDB(); // Charge les catégories au démarrage
+            loadCategoriesFromIndexedDB(); // Load categories on startup
         };
     }
 
-    // Sauvegarde une note dans IndexedDB
+    //Save a note to IndexedDB
     function saveNoteToIndexedDB(note, callback) {
         const transaction = db.transaction([notesStoreName], 'readwrite');
         const objectStore = transaction.objectStore(notesStoreName);
@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
-    // Supprime une note de IndexedDB
+    // Deletes a note from IndexedDB
     function deleteNoteFromIndexedDB(noteId, callback) {
         const transaction = db.transaction([notesStoreName], 'readwrite');
         const objectStore = transaction.objectStore(notesStoreName);
@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
-    // Charge toutes les notes depuis IndexedDB
+    // Loads all notes from IndexedDB
     function loadNotesFromIndexedDB(callback) {
         const transaction = db.transaction([notesStoreName], 'readonly');
         const objectStore = transaction.objectStore(notesStoreName);
@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-     // Sauvegarde une categorie dans IndexedDB
+     // Save a category in IndexedDB
      function saveCategoryToIndexedDB(category, callback) {
         const transaction = db.transaction([categoriesStoreName], 'readwrite');
         const objectStore = transaction.objectStore(categoriesStoreName);
@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
-    // Charge toutes les categories depuis IndexedDB
+    // Load all categories from IndexedDB
     function loadCategoriesFromIndexedDB(callback) {
         const transaction = db.transaction([categoriesStoreName], 'readonly');
         const objectStore = transaction.objectStore(categoriesStoreName);
@@ -173,7 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
         request.onsuccess = (event) => {
             categories = event.target.result;
             if (categories.length === 0) {
-                 // Ajouter la catégorie par défaut si la base de données est vide
+                 // Add default category if database is empty
                  const defaultCategory = { name: 'Default', color: '#b5afaf', id: uuidv4() };
                  saveCategoryToIndexedDB(defaultCategory, () => {
                     categories = [defaultCategory];
@@ -196,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
-     // Supprime une catégorie de IndexedDB
+     // Removes a category from IndexedDB
      function deleteCategoryFromIndexedDB(categoryId, callback) {
         const transaction = db.transaction([categoriesStoreName], 'readwrite');
         const objectStore = transaction.objectStore(categoriesStoreName);
@@ -212,19 +212,9 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
-    // --- Chrome Storage ---
-    // Récupère les catégories depuis Chrome Storage
-  /*  function getCategoriesFromStorage(callback) {
-        chrome.storage.sync.get({ categories: [{ name: 'Default', color: '#b5afaf', id: uuidv4() }] }, (data) => callback(data.categories));
-    }
-
-    // Sauvegarde les catégories dans Chrome Storage
-    function saveCategoriesToStorage(categories, callback) {
-        chrome.storage.sync.set({ categories }, () => callback && callback());
-    }*/
 
     // --- UI functions ---
-    // Met à jour les listes déroulantes de catégories
+    // Updates category drop-down lists
     function updateCategorySelects() {
         const categoryOptions = categories.map(cat => `<option value="${cat.id}">${cat.name}</option>`).join('');
         categorySelect.innerHTML = categoryOptions;
@@ -232,7 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
         editCategorySelect.innerHTML = categoryOptions;
     }
 
-    // Affiche les catégories dans la liste
+    //Show categories in the list
     function displayCategories() {
         categoryList.innerHTML = categories.map(cat => `
             <li style="background-color: ${cat.color};">
@@ -243,7 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updateCategorySelects();
     }
 
-    // Affiche les notes dans la liste
+    // Displays notes in the list
     function displayNotes(filteredNotes = notes, targetElement) {
         if (!targetElement) return;
 
@@ -293,7 +283,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Ajoute une nouvelle catégorie
+    // Add a new category
     addCategory.addEventListener('click', () => {
         const categoryName = categoryInput.value.trim();
         const categoryColorValue = categoryColor.value;
@@ -315,7 +305,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Sauvegarde une nouvelle note
+    // Save a new note
     saveNote.addEventListener('click', () => {
         if (!noteInputEditor) {
             console.error("The 'noteInput' editor is not yet initialized.");
@@ -345,7 +335,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Lance la recherche de notes
+    // Starts the notes search
     searchButton.addEventListener('click', () => {
         const keyword = searchKeyword.value.toLowerCase();
         const selectedCategory = searchCategory.value;
@@ -368,7 +358,7 @@ document.addEventListener('DOMContentLoaded', () => {
         displayNotes(filteredNotes.slice(-10), searchResults);
     });
 
-    // Gestion des clics sur les catégories (suppression et édition)
+    // Managing clicks on categories (deleting and editing)
     categoryList.addEventListener('click', (event) => {
         if (event.target.classList.contains('delete-category')) {
             const categoryIdToDelete = event.target.dataset.id;
@@ -399,7 +389,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Sauvegarde les modifications d'une catégorie
+    //Save changes to a category
     saveEditCategory.addEventListener('click', () => {
         if (categoryToEdit) {
             const newCategoryName = editCategoryInput.value.trim();
@@ -430,12 +420,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Annule les modifications d'une catégorie
+    // Cancels changes to a category
     cancelEditCategory.addEventListener('click', () => {
         editCategoryForm.style.display = 'none';
     });
 
-    // Gestion des actions sur les notes (delegation d'evenement)
+    // Managing actions on notes (event delegation)
     document.addEventListener('click', (event) => {
         const noteId = event.target.dataset.id;
         const resultElement = event.target.closest('.ongletEdit') || event.target.closest('.searchResults');
@@ -461,7 +451,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // ici
         }
          else if (event.target.id === 'cancelEditNote' || event.target.classList.contains('cancel-edit-note')) {
-                // Gestion du bouton Cancel du formulaire principal
+                // Managing the Cancel button on the main form
                 editNoteForm.style.display = 'none';
             }
     });
@@ -490,10 +480,10 @@ document.addEventListener('DOMContentLoaded', () => {
         noteToEdit = notes.find(note => note.id === noteId);
 
         if (noteToEdit) {
-            // Préparer le formulaire d'édition
+            // Prepare the editing form
             const categoryOptions = categories.map(cat => `<option value="${cat.id}" ${noteToEdit.category === cat.id ? 'selected' : ''}>${cat.name}</option>`).join('');
 
-            // Remplacer l'élément de résultat par le formulaire d'édition
+            // Replace the result element with the edit form
             resultElement.innerHTML = `
                 <label for="editNoteTitleInputInline">Edit Title:</label>
                 <input type="text" id="editNoteTitleInputInline" value="${noteToEdit.title}">
@@ -520,10 +510,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             `;
 
-             // Initialiser l'éditeur Hugerte
+             // Initialize the Hugerte editor
              const editNoteInputInline = resultElement.querySelector('#editNoteInputInline');
              if (editNoteInputInline) {
-                 // Détruire l'instance précédente avant d'initialiser une nouvelle
+                 // Destroy the previous instance before initializing a new one
                  if (editNoteInputEditor) {
                      editNoteInputEditor.destroy();
                      editNoteInputEditor = null;
@@ -531,13 +521,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
                  initializeHuerteEditor('#editNoteInputInline', (editor) => {
                      editNoteInputEditor = editor;
-                     editNoteInputEditor.setContent(noteToEdit.note); // Initialiser le contenu
+                     editNoteInputEditor.setContent(noteToEdit.note); // Initialize content
                  });
              }
         }
     }
 
-    // Bascule l'état "épinglé" d'une note
+    //Toggles the "pinned" state of a note
     function togglePinNote(noteId) {
         const noteToUpdate = notes.find(note => note.id === noteId);
 
@@ -553,7 +543,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Copie le contenu d'une note
+    // Copy the contents of a note
     function copyNote(noteId) {
         const noteToCopy = notes.find(note => note.id === noteId);
         if (noteToCopy) {
@@ -595,7 +585,7 @@ document.addEventListener('DOMContentLoaded', () => {
             saveNoteToIndexedDB(noteToEdit, () => {
                 loadNotesFromIndexedDB(() => {
                     displayNotes(notes.filter(note => note.pinned), notesList);
-                    searchButton.click(); // Réexécuter la recherche pour mettre à jour les résultats
+                    searchButton.click(); // Rerun the search to update the results
                 });
             });
         }
@@ -603,21 +593,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function cancelEditNoteInline(isNotesTab) {
         if (isNotesTab) {
-            // Onglet "Notes": Afficher les notes épinglées
+            // "Notes" tab: Show pinned notes
             displayNotes(notes.filter(note => note.pinned), notesList);
         } else {
-            // Onglet "Search": Recharger les résultats de la recherche
+            // "Search" tab: Reload search results
             searchButton.click();
         }
     }
 
-    // Sauvegarde les modifications d'une note
+    // Save changes to a note
     saveEditNote.addEventListener('click', () => {
         if (noteToEdit) {
             const category = editCategorySelect.value;
             const type = editTypeSelect.value;
             const noteTitle = editNoteTitleInput.value;
-            const noteValue = editNoteInputEditor.getContent(); // Utiliser getContent() de Hugerte
+            const noteValue = editNoteInputEditor.getContent(); //Save changes to a note
             const pinned = document.getElementById('pinNoteCheckbox').checked;
 
             if (!category || !categories.find(cat => cat.id === category)) {
@@ -640,13 +630,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Annule les modifications d'une note
+    // Cancels changes to a note
     cancelEditNote.addEventListener('click', () => {
         editNoteForm.style.display = 'none';
     });
 
     // --- Tabs ---
-    // Gestion de l'affichage des onglets
+    // Managing tab display
     const tabButtons = document.querySelectorAll('.tab-button');
     const tabContents = document.querySelectorAll('.tab-content');
 
@@ -665,7 +655,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- Util ---
-    // Vérifie si une couleur est trop claire
+    // Check if a color is too light
     function isTooLight(color) {
         const r = parseInt(color.slice(1, 3), 16);
         const g = parseInt(color.slice(3, 5), 16);
@@ -675,7 +665,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Init ---
-    // Initialisation de l'application
+    // Initializing the app
     initIndexedDB();
     //getCategoriesFromStorage(loadedCategories => {
        // categories = loadedCategories;
