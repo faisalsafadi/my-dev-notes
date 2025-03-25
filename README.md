@@ -6,7 +6,7 @@ Your Personal Development Knowledge Base
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 
- ![My Dev Notes is a Chrome extension designed to help developers efficiently store, organize, and access their code snippets, notes, and resources. Keep your valuable coding knowledge at your fingertips!](home.jpg)
+ ![My Dev Notes is a Chrome extension designed to help developers efficiently store, organize, and access their code snippets, notes, and resources. Keep your valuable coding knowledge at your fingertips](screenshots/home.jpg)
 ## Features
 
 *   Effortless Note-Taking: Quickly capture code snippets, text notes, links, and images directly within your browser.
