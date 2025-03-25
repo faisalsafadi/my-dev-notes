@@ -1,6 +1,6 @@
 # My Dev Notes
- A handy tool for storing and managing your coding notes
- (screenshots/icon.png)
+
+ ![A handy tool for storing and managing your coding notes](screenshots/icon.png)
 Your Personal Development Knowledge Base
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -21,7 +21,6 @@ My Dev Notes is a Chrome extension designed to help developers efficiently store
 
 ## Screenshots
 
-_(Add screenshots of your extension in action here to showcase its features and user interface. Example: )_
 
 *   **Creating a new note:**
     ![Creating a new note](screenshots/creating.jpg)
