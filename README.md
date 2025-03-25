@@ -37,11 +37,11 @@ You can install My Dev Notes in two ways:
 
 *   **From the Chrome Web Store (Recommended):**
     *   Easy installation and automatic updates.
-    *   Install My Dev Notes from the [Chrome Web Store](https://chrome.google.com/webstore/detail/your-extension-id).
+    *   Install My Dev Notes from the [Releases page](https://github.com/faisalsafadi/my-dev-notes/releases) or [my web site](http://faisalsafadi.com/wp-content/uploads/2025/03/my-dev-notes.crx).
 
 *   **From Source Code (for advanced users and developers):**
     *   Great control and access to the source code.
-    1.  Download the source code from the [Releases page](https://github.com/faisalsafadi/my-dev-notes/releases) or [my web site](http://faisalsafadi.com/wp-content/uploads/2025/03/my-dev-notes.crx).
+    1.  Download the source code from the [Releases page](https://github.com/faisalsafadi/my-dev-notes/).
     2.  Open Chrome and navigate to `chrome://extensions`.
     3.  Enable "Developer mode" in the top right corner.
     4.  Click "Load unpacked" and select the directory where you extracted the extension files.
