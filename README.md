@@ -77,7 +77,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Credits
 
 *   This extension uses the following open-source libraries:
-    *   [Hugerte]([https://quilljs.co](https://github.com/hugerte/hugerte)/): For the rich text editor.
+    *   [Hugerte](https://github.com/hugerte/hugerte): For the rich text editor.
     *   [Prism.js](https://prismjs.com/): For code syntax highlighting.
     *   [DOMPurify](https://github.com/cure53/DOMPurify): For HTML sanitization.
     *   [UUID](https://www.npmjs.com/package/uuid): For unique ID generation.
