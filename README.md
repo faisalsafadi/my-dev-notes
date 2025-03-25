@@ -72,7 +72,7 @@ We welcome contributions to My Dev Notes! If you have any suggestions, bug repor
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) file for details.
 
 ## Credits
 
